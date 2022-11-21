@@ -1,5 +1,6 @@
 package com.example.aeon.model;
 
+import com.example.aeon.model.dto.DtoCreateKaryawan;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,4 +24,18 @@ public class DetailKaryawan {
     @JoinColumn(name = "id_karyawan", referencedColumnName = "id")
     private Karyawan karyawan;
 
+    public DetailKaryawan() {
+
+    }
+
+    public DetailKaryawan(DtoCreateKaryawan dtoCreateKaryawanPlusDetail) {
+        this.nik = dtoCreateKaryawanPlusDetail.getNik();
+        this.npwp = dtoCreateKaryawanPlusDetail.getNpwp();
+    }
+
+    public DetailKaryawan(Karyawan karyawan, String nik, String npwp) {
+        this.karyawan = karyawan;
+        this.nik = nik;
+        this.npwp = npwp;
+    }
 }

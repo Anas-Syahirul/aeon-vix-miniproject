@@ -1,5 +1,7 @@
 package com.example.aeon.model;
 
+import com.example.aeon.model.dto.DtoCreateKaryawan;
+import com.example.aeon.model.dto.DtoUpdateKaryawan;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,5 +34,36 @@ public class Karyawan {
     @OneToMany(mappedBy = "karyawan")
     private List<KaryawanTraining> karyawanTrainingList;
 
+    public Karyawan() {
+
+    }
+
+    public Karyawan(Long id) {
+        this.id = id;
+    }
+
+    public Karyawan(String nama, String jk, Date dob, String alamat, String status) {
+        this.nama = nama;
+        this.jk = jk;
+        this.dob = dob;
+        this.alamat = alamat;
+        this.status = status;
+    }
+
+    public Karyawan(DtoCreateKaryawan dtoCreateKaryawan) {
+        this.createdDate = new Date(java.time.LocalDate.now().toString());
+        this.nama = dtoCreateKaryawan.getNama();
+        this.jk = dtoCreateKaryawan.getJk();
+        this.dob = dtoCreateKaryawan.getDob();
+        this.alamat = dtoCreateKaryawan.getAlamat();
+    }
+
+    public Karyawan(DtoUpdateKaryawan dtoUpdateKaryawan) {
+        this.updatedDate = dtoUpdateKaryawan.getUpdatedDate();
+        this.nama = dtoUpdateKaryawan.getNama();
+        this.jk = dtoUpdateKaryawan.getJk();
+        this.dob = dtoUpdateKaryawan.getDob();
+        this.alamat = dtoUpdateKaryawan.getAlamat();
+    }
 
 }
