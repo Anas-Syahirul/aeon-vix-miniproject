@@ -15,7 +15,7 @@ public interface TrainingRepo extends JpaRepository<Training, Long> {
     @Query(value = "select t from Training t where t.id = :id")
     Training getById(@Param("id") Long id);
 
-    @Query(value = "select t from Training t where t.namaPengajar like :namaPengajar")
+    @Query(value = "select t from Training t where t.namaPengajar like " + "%" + ":namaPengajar" + "%")
     Page<Training> getTransaksiByNamaPengajar(@Param("namaPengajar") String namaPengajar, Pageable pageable);
 
     @Query(value = "select t from Training t")

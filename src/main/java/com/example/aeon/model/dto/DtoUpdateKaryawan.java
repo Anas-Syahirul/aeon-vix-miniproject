@@ -6,7 +6,6 @@ import java.util.Date;
 
 @Data
 public class DtoUpdateKaryawan {
-    private Date updatedDate;
     private Long id;
     private String nama;
     private String jk;
@@ -20,7 +19,6 @@ public class DtoUpdateKaryawan {
     public DtoUpdateKaryawan(Long id, String nama, String jk, Date dob, String alamat, String status,
                              String nik, String npwp){
         this.id = id;
-        this.updatedDate = new Date(java.time.LocalDate.now().toString());
         this.nama = nama;
         this.jk = jk;
         this.alamat = alamat;

@@ -2,6 +2,8 @@ package com.example.aeon.model;
 
 import com.example.aeon.model.dto.DtoCreateKaryawan;
 import com.example.aeon.model.dto.DtoUpdateKaryawan;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -22,15 +24,20 @@ public class Karyawan {
     private Date updatedDate;
     private String nama;
     private String jk;
+
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date dob;
     private String alamat;
     private String status;
+    @JsonIgnore
     @OneToOne(mappedBy = "karyawan")
     private DetailKaryawan detailKaryawan;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "karyawan")
     private List<Rekening> rekeningList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "karyawan")
     private List<KaryawanTraining> karyawanTrainingList;
 
@@ -51,15 +58,16 @@ public class Karyawan {
     }
 
     public Karyawan(DtoCreateKaryawan dtoCreateKaryawan) {
-        this.createdDate = new Date(java.time.LocalDate.now().toString());
+        this.createdDate = new Date();
         this.nama = dtoCreateKaryawan.getNama();
         this.jk = dtoCreateKaryawan.getJk();
-        this.dob = dtoCreateKaryawan.getDob();
+        this.dob = new Date();
         this.alamat = dtoCreateKaryawan.getAlamat();
+        this.status = dtoCreateKaryawan.getStatus();
     }
 
     public Karyawan(DtoUpdateKaryawan dtoUpdateKaryawan) {
-        this.updatedDate = dtoUpdateKaryawan.getUpdatedDate();
+        this.updatedDate = new Date();
         this.nama = dtoUpdateKaryawan.getNama();
         this.jk = dtoUpdateKaryawan.getJk();
         this.dob = dtoUpdateKaryawan.getDob();

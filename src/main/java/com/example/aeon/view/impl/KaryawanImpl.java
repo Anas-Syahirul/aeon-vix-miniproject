@@ -37,14 +37,27 @@ public class KaryawanImpl implements KaryawanService {
     public Karyawan update(DtoUpdateKaryawan dtoUpdateKaryawan) {
         Karyawan foundKaryawan = karyawanRepo.findById(dtoUpdateKaryawan.getId()).orElse(new Karyawan());
         if (foundKaryawan.getNama() != null) {
-            foundKaryawan.setUpdatedDate(new Date(java.time.LocalDate.now().toString()));
+//            Object[] karyawanAtribute = {
+//                    dtoUpdateKaryawan.getNama(), dtoUpdateKaryawan.getJk(),
+//                    dtoUpdateKaryawan.getDob(), dtoUpdateKaryawan.getAlamat(),
+//                    dtoUpdateKaryawan.getStatus(), dtoUpdateKaryawan.getNik(),
+//                    dtoUpdateKaryawan.getNpwp()
+//            };
+//            for ( Object atribut: karyawanAtribute) {
+//                if (atribut != null) {
+//
+//                }
+//            }
+            foundKaryawan.setUpdatedDate(new Date());
             foundKaryawan.setNama(dtoUpdateKaryawan.getNama());
             foundKaryawan.setJk(dtoUpdateKaryawan.getJk());
             foundKaryawan.setStatus(dtoUpdateKaryawan.getStatus());
             foundKaryawan.setDob(dtoUpdateKaryawan.getDob());
+            karyawanRepo.save(foundKaryawan);
             DetailKaryawan detailKaryawanByKaryawan = detailKaryawanRepo.getDetailKaryawanByKaryawan(foundKaryawan);
             detailKaryawanByKaryawan.setNik(dtoUpdateKaryawan.getNik());
             detailKaryawanByKaryawan.setNpwp(dtoUpdateKaryawan.getNpwp());
+            detailKaryawanRepo.save(detailKaryawanByKaryawan);
             return foundKaryawan;
         }
         return null;

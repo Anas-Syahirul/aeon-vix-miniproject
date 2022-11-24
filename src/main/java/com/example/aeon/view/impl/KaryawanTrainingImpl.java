@@ -9,7 +9,11 @@ import com.example.aeon.repository.KaryawanTrainingRepo;
 import com.example.aeon.repository.TrainingRepo;
 import com.example.aeon.view.service.KaryawanTrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
+@Service
 public class KaryawanTrainingImpl implements KaryawanTrainingService {
     @Autowired
     private KaryawanTrainingRepo karyawanTrainingRepo;
@@ -30,5 +34,15 @@ public class KaryawanTrainingImpl implements KaryawanTrainingService {
         return karyawanTrainingRepo.save(new KaryawanTraining(dtoCreateKaryawanTraining));
     }
 
-
+    @Override
+    public Page<KaryawanTraining> getListByKaryawanAndTraining(String namaKaryawan, String namaPengajar, Pageable pageable) {
+        if (namaKaryawan != null && namaPengajar != null) {
+            return karyawanTrainingRepo.getByKaryawanNamaAndTrainingPengajar(namaKaryawan, namaPengajar, pageable);
+        } else if (namaKaryawan != null) {
+            return karyawanTrainingRepo.getByKaryawanNama(namaKaryawan, pageable);
+        } else if (namaPengajar != null) {
+            return karyawanTrainingRepo.getByTrainingNamaPengajar(namaPengajar, pageable);
+        }
+        return karyawanTrainingRepo.getAllKaryawanTraining(pageable);
+    }
 }

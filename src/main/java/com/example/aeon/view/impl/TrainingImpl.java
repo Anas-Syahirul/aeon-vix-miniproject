@@ -8,10 +8,12 @@ import com.example.aeon.view.service.TrainingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.Optional;
 
+@Service
 public class TrainingImpl implements TrainingService {
 
     @Autowired
@@ -26,7 +28,7 @@ public class TrainingImpl implements TrainingService {
     public Training update(DtoUpdateTraining dtoUpdateTraining) {
         Training selectedTraining = trainingRepo.findById(dtoUpdateTraining.getId()).orElse(new Training());
         if (selectedTraining.getId() != null) {
-            selectedTraining.setUpdatedDate(new Date(java.time.LocalDate.now().toString()));
+            selectedTraining.setUpdatedDate(new Date());
             selectedTraining.setNamaPengajar(dtoUpdateTraining.getNamaPengajar());
             selectedTraining.setTema(dtoUpdateTraining.getTema());
             return trainingRepo.save(selectedTraining);

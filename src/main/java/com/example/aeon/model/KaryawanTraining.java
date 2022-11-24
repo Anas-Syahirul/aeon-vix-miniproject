@@ -32,7 +32,7 @@ public class KaryawanTraining {
     }
 
     public KaryawanTraining(DtoCreateKaryawanTraining dtoCreateKaryawanTraining) {
-        this.createdDate = new Date(java.time.LocalDate.now().toString());
+        this.createdDate = new Date();
         this.tanggalTraining = dtoCreateKaryawanTraining.getTanggalTraining();
         this.karyawan = new Karyawan(dtoCreateKaryawanTraining.getIdKaryawan());
         this.training = new Training(dtoCreateKaryawanTraining.getIdTraining());

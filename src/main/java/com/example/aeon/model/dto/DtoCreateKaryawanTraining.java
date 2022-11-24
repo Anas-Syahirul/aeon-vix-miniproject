@@ -10,7 +10,6 @@ import java.util.Date;
 
 @Data
 public class DtoCreateKaryawanTraining {
-    private Date createdDate;
     private Date tanggalTraining;
 
     private Long idKaryawan;

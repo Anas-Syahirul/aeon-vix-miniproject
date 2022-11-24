@@ -6,9 +6,11 @@ import com.example.aeon.model.dto.DtoUpdateKaryawan;
 import com.example.aeon.model.dto.DtoUpdateTraining;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public interface TrainingService {
     Training save(DtoCreateTraining dtoCreateTraining);
 
