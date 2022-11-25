@@ -1,5 +1,8 @@
 package com.example.aeon.model;
 
+import com.example.aeon.model.dto.DtoCreateTraining;
+import com.example.aeon.model.dto.DtoUpdateTraining;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,6 +24,27 @@ public class Training {
     private String namaPengajar;
     private String tema;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "training")
     private List<KaryawanTraining> karyawanTrainingList;
+
+    public Training() {
+
+    }
+
+    public Training(Long id) {
+        this.id = id;
+    }
+
+    public Training(DtoCreateTraining dtoCreateTraining) {
+        this.createdDate = new Date();
+        this.namaPengajar = dtoCreateTraining.getNamaPengajar();
+        this.tema = dtoCreateTraining.getTema();
+    }
+
+    public Training(DtoUpdateTraining dtoUpdateTraining) {
+        this.updatedDate = new Date();
+        this.namaPengajar = dtoUpdateTraining.getNamaPengajar();
+        this.tema = dtoUpdateTraining.getTema();
+    }
 }
