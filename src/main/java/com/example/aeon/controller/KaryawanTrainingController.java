@@ -26,11 +26,11 @@ public class KaryawanTrainingController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<KaryawanTraining>> getListPaging(@RequestParam(defaultValue = "0") Integer page,
+    public ResponseEntity<Page<KaryawanTraining>> getListPaging(@RequestParam(defaultValue = "1") Integer page,
                                                                 @RequestParam(defaultValue = "5") Integer size,
                                                                 @RequestParam(required = false) String namaKaryawan,
                                                                 @RequestParam(required = false) String namaPengajar){
-        Pageable paging = PageRequest.of(page, size);
+        Pageable paging = PageRequest.of(page - 1, size);
         Page<KaryawanTraining> listKaryawanTraining = karyawanTrainingService.
                 getListByKaryawanAndTraining(namaKaryawan, namaPengajar, paging);
 

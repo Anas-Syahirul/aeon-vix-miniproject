@@ -6,7 +6,6 @@ import java.util.Date;
 
 @Data
 public class DtoCreateKaryawan {
-//    private Date createdDate;
     private String nama;
     private String jk;
 

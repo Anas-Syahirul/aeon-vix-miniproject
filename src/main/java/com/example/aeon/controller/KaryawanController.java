@@ -32,10 +32,10 @@ public class KaryawanController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Karyawan>> getListKaryawan(@RequestParam(defaultValue = "0") Integer page,
+    public ResponseEntity<Page<Karyawan>> getListKaryawan(@RequestParam(defaultValue = "1") Integer page,
                                                           @RequestParam(defaultValue = "5") Integer size,
                                                           @RequestParam(required = false) String nama){
-        Pageable paging = PageRequest.of(page, size);
+        Pageable paging = PageRequest.of(page - 1, size);
         Page<Karyawan> listKaryawan = karyawanService.findByNama(nama, paging);
         return new ResponseEntity<>(listKaryawan, HttpStatus.OK);
     }

@@ -33,10 +33,10 @@ public class TrainingController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Page<Training>> getListTraining(@RequestParam(defaultValue = "0") Integer page,
+    public ResponseEntity<Page<Training>> getListTraining(@RequestParam(defaultValue = "1") Integer page,
                                                           @RequestParam(defaultValue = "5") Integer size,
                                                           @RequestParam(required = false) String namaPengajar) {
-        Pageable paging = PageRequest.of(page, size);
+        Pageable paging = PageRequest.of(page - 1, size);
         Page<Training> listTraining = trainingService.findByNamaPengajar(namaPengajar, paging);
         return new ResponseEntity<>(listTraining, HttpStatus.OK);
     }
