@@ -1,6 +1,5 @@
 package com.example.aeon.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,7 +10,11 @@ public class DtoCreateKaryawan {
     private String nama;
     private String jk;
 
-    private String dob;
+    private Integer dobYear;
+
+    private Integer dobMonth;
+
+    private Integer dobDay;
     private String alamat;
     private String status;
 

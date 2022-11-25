@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -58,10 +59,14 @@ public class Karyawan {
     }
 
     public Karyawan(DtoCreateKaryawan dtoCreateKaryawan) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, dtoCreateKaryawan.getDobYear());
+        cal.set(Calendar.MONTH, dtoCreateKaryawan.getDobMonth() - 1);
+        cal.set(Calendar.DAY_OF_MONTH, dtoCreateKaryawan.getDobDay());
+        this.dob = cal.getTime();
         this.createdDate = new Date();
         this.nama = dtoCreateKaryawan.getNama();
         this.jk = dtoCreateKaryawan.getJk();
-        this.dob = new Date();
         this.alamat = dtoCreateKaryawan.getAlamat();
         this.status = dtoCreateKaryawan.getStatus();
     }
@@ -70,7 +75,11 @@ public class Karyawan {
         this.updatedDate = new Date();
         this.nama = dtoUpdateKaryawan.getNama();
         this.jk = dtoUpdateKaryawan.getJk();
-        this.dob = dtoUpdateKaryawan.getDob();
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, dtoUpdateKaryawan.getDobYear());
+        cal.set(Calendar.MONTH, dtoUpdateKaryawan.getDobMonth() - 1);
+        cal.set(Calendar.DAY_OF_MONTH, dtoUpdateKaryawan.getDobDay());
+        this.dob = cal.getTime();
         this.alamat = dtoUpdateKaryawan.getAlamat();
     }
 

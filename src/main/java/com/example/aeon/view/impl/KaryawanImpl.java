@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -37,22 +38,17 @@ public class KaryawanImpl implements KaryawanService {
     public Karyawan update(DtoUpdateKaryawan dtoUpdateKaryawan) {
         Karyawan foundKaryawan = karyawanRepo.findById(dtoUpdateKaryawan.getId()).orElse(new Karyawan());
         if (foundKaryawan.getNama() != null) {
-//            Object[] karyawanAtribute = {
-//                    dtoUpdateKaryawan.getNama(), dtoUpdateKaryawan.getJk(),
-//                    dtoUpdateKaryawan.getDob(), dtoUpdateKaryawan.getAlamat(),
-//                    dtoUpdateKaryawan.getStatus(), dtoUpdateKaryawan.getNik(),
-//                    dtoUpdateKaryawan.getNpwp()
-//            };
-//            for ( Object atribut: karyawanAtribute) {
-//                if (atribut != null) {
-//
-//                }
-//            }
             foundKaryawan.setUpdatedDate(new Date());
             foundKaryawan.setNama(dtoUpdateKaryawan.getNama());
             foundKaryawan.setJk(dtoUpdateKaryawan.getJk());
             foundKaryawan.setStatus(dtoUpdateKaryawan.getStatus());
-            foundKaryawan.setDob(dtoUpdateKaryawan.getDob());
+
+            Calendar cal = Calendar.getInstance();
+            cal.set(Calendar.YEAR, dtoUpdateKaryawan.getDobYear());
+            cal.set(Calendar.MONTH, dtoUpdateKaryawan.getDobMonth() - 1);
+            cal.set(Calendar.DAY_OF_MONTH, dtoUpdateKaryawan.getDobDay());
+            foundKaryawan.setDob(cal.getTime());
+
             karyawanRepo.save(foundKaryawan);
             DetailKaryawan detailKaryawanByKaryawan = detailKaryawanRepo.getDetailKaryawanByKaryawan(foundKaryawan);
             detailKaryawanByKaryawan.setNik(dtoUpdateKaryawan.getNik());
@@ -60,11 +56,6 @@ public class KaryawanImpl implements KaryawanService {
             detailKaryawanRepo.save(detailKaryawanByKaryawan);
             return foundKaryawan;
         }
-        return null;
-    }
-
-    @Override
-    public List<Karyawan> getAll() {
         return null;
     }
 

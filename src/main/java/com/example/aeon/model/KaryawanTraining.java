@@ -4,6 +4,7 @@ import com.example.aeon.model.dto.DtoCreateKaryawanTraining;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.Date;
 
 @Data
@@ -33,7 +34,11 @@ public class KaryawanTraining {
 
     public KaryawanTraining(DtoCreateKaryawanTraining dtoCreateKaryawanTraining) {
         this.createdDate = new Date();
-        this.tanggalTraining = dtoCreateKaryawanTraining.getTanggalTraining();
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, dtoCreateKaryawanTraining.getDotYear());
+        cal.set(Calendar.MONTH, dtoCreateKaryawanTraining.getDotMonth() - 1);
+        cal.set(Calendar.DAY_OF_MONTH, dtoCreateKaryawanTraining.getDotDay());
+        this.tanggalTraining = cal.getTime();
         this.karyawan = new Karyawan(dtoCreateKaryawanTraining.getIdKaryawan());
         this.training = new Training(dtoCreateKaryawanTraining.getIdTraining());
     }

@@ -14,8 +14,6 @@ public interface KaryawanService {
 
     Karyawan update(DtoUpdateKaryawan dtoUpdateKaryawan);
 
-    List<Karyawan> getAll(); //kurang like byNama
-
     Karyawan getById(Long id);
 
     Page<Karyawan> findByNama(String nama, Pageable pageable);

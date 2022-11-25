@@ -9,7 +9,12 @@ public class DtoUpdateKaryawan {
     private Long id;
     private String nama;
     private String jk;
-    private Date dob;
+
+    private Integer dobYear;
+
+    private Integer dobMonth;
+
+    private Integer dobDay;
     private String alamat;
     private String status;
 
