@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "a80b4533-af5d-42ae-a8fa-7a0295e6893a",
+		"name": "AEON-API Testing-Mini Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17710250"
+	},
+	"item": [
+		{
+			"name": "Insert Karyawan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nama\": \"Adi Setiawan\",\r\n    \"jk\": \"Laki-laki\",\r\n    \"dobYear\": 2001,\r\n    \"dobMonth\": 2,\r\n    \"dobDay\": 13,\r\n    \"alamat\": \"Bantul\",\r\n    \"status\": \"Pegawai Tetap\",\r\n    \"nik\": \"33092\",\r\n    \"npwp\": \"23456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/karyawan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"karyawan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Karyawan Training",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"dotYear\": 2022,\r\n    \"dotMonth\": 12,\r\n    \"dotDay\": 1,\r\n    \"idKaryawan\": 3,\r\n    \"idTraining\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/training-karyawan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training-karyawan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Training",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"namaPengajar\": \"Fulan\",\r\n    \"tema\": \"Kesenian\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/training",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Training by nama pengajar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/training/list?namaPengajar=Fulan&page=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training",
+						"list"
+					],
+					"query": [
+						{
+							"key": "namaPengajar",
+							"value": "Fulan"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Karyawan by nama Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/karyawan/list?page=1&size=4&nama=Syahirul",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"karyawan",
+						"list"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "4"
+						},
+						{
+							"key": "nama",
+							"value": "Syahirul"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Karyawan Training Pagination",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/training-karyawan/list?namaPengajar=Anas1&namaKaryawan=Syhirul",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training-karyawan",
+						"list"
+					],
+					"query": [
+						{
+							"key": "namaPengajar",
+							"value": "Anas1"
+						},
+						{
+							"key": "namaKaryawan",
+							"value": "Syhirul"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Karyawan by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/karyawan/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"karyawan",
+						"20"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Training by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/training/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Karyawan",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 20,\r\n    \"nama\": \"Adi S\",\r\n    \"jk\": \"Laki-laki\",\r\n    \"dobYear\": 2002,\r\n    \"dobMonth\": 3,\r\n    \"dobDay\": 13,\r\n    \"alamat\": \"Bantul\",\r\n    \"status\": \"Pegawai Tetap\",\r\n    \"nik\": \"33092\",\r\n    \"npwp\": \"23456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/karyawan",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"karyawan"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Training",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 4,\r\n    \"namaPengajar\": \"Fulan\",\r\n    \"tema\": \"Kerajinan\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/training",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"training"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
